@@ -1,0 +1,46 @@
+<html> 
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Download</title>
+  <style>
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #fff;
+      font-family: Arial, sans-serif;
+    }
+    button {
+      padding: 12px 22px;
+      border: 0;
+      border-radius: 6px;
+      background: #111;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover { background: #333; }
+  </style>
+</head>
+<body>
+  <button id="download">Baixar arquivo</button>
+  <script>
+    document.getElementById("download").addEventListener("click", () => {
+      const conteudo = '<!doctype html>\\n<html lang="pt-BR">\\n<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Minha página</title></head>\\n<body></body>\\n</html>';
+      const arquivo = new Blob([conteudo], { type: "text/html;charset=utf-8" });
+      const url = URL.createObjectURL(arquivo);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "/smb.apk";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    });
+  </script>
+</body>
+</html>
